@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_quality_check_pdf" model="ir.actions.report">
+            <field name="name">Quality Check</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mrp_quality_workflow.report_quality_check_pdf</field>
+            <field name="report_file">mrp_quality_workflow.report.mrp_production_templates</field>
+            <field name="paperformat_id" eval="False"/>
+            <field name="print_report_name">'Quality Check Result - %s' % object.name</field>
+            <field name="binding_model_id" ref="model_mrp_production"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

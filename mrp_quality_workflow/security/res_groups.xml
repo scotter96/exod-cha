@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+
+        <record id="group_quality_control_manager" model="res.groups">
+            <field name="name">Quality Control Manager</field>
+            <field name="category_id" ref="base.module_category_manufacturing_manufacturing"/>
+            <field name="implied_ids" eval="[(4, ref('mrp.group_mrp_manager'))]"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        </record>
+
+    </data>
+</odoo>

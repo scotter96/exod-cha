@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_quality_check_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-7">
+                                <h2><span t-field="o.name"/></h2>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-3" t-if="o.origin">
+                                <strong>Source:</strong><br/>
+                                <span t-field="o.origin"/>
+                            </div>
+                            <div class="col-3" t-if="o.user_id">
+                                <strong>Responsible:</strong><br/>
+                                <span t-field="o.user_id"/>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-3">
+                                <strong>Product:</strong><br/>
+                                <span t-field="o.product_id"/>
+                            </div>
+                            <div class="col-3" t-if="o.product_description_variants">
+                                <strong>Description:</strong><br/>
+                                <span t-field="o.product_description_variants"/>
+                            </div>
+                        </div>
+                        <h3>
+                            <span>Quality Checks</span>
+                        </h3>
+                        <span t-if="not o.quality_check_ids">There are no Quality Checks for this Order.</span>
+                        <div t-if="o.quality_check_ids" groups="mrp.group_mrp_user">
+                            <table class="table table-sm">
+                                <tr>
+                                    <th><strong>Product</strong></th>
+                                    <th><strong>Name</strong></th>
+                                    <th><strong>Check Type</strong></th>
+                                </tr>
+                                <tr t-foreach="o.quality_check_ids" t-as="qc">
+                                    <td><span t-field="qc.product_id"/></td>
+                                    <td><span t-field="qc.name"/></td>
+                                    <td><span t-field="qc.check_type"/></td>
+                                </tr>
+                            </table>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th><strong>Product</strong></th>
+                                    <th><strong>MO Quantity</strong></th>
+                                    <th><strong>Tolerance</strong></th>
+                                    <th><strong>Measured Value</strong></th>
+                                    <th><strong>Status</strong></th>
+                                </tr>
+                                <tr t-foreach="o.quality_check_ids" t-as="qc">
+                                    <td><span t-field="qc.product_id"/></td>
+                                    <td><span t-field="qc.move_quantity"/></td>
+                                    <td><span t-field="qc.tolerance"/></td>
+                                    <td><span t-field="qc.measured_value"/></td>
+                                    <td style="background-color: green; color: white;" t-if="qc.state == 'pass'">
+                                        <span t-field="qc.state"/>
+                                    </td>
+                                    <td style="background-color: red; color: white;" t-if="qc.state == 'fail'">
+                                        <span t-field="qc.state"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
