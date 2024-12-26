@@ -10,32 +10,41 @@ Hello! Here's how you can install and use this module:
     http://localhost:8093/web/database/manager
 
 4. Then create a new database along with an administrator user access, and please check the Demo Data before proceeding.
+    ![An example of how the database creation wizard should appear](image.png)
 
 5. After the database has been created successfully, go ahead and install the module from Odoo interface:
     - Go to the Apps menu.
     - Click on the "Update Apps List" button.
     - Search for "mrp_quality_workflow" and click "Activate".
+    ![Installing an app/module in Odoo 17](image-1.png)
 
 6. Congrats! Now you've successfully installed the module. Now it's time to actually use it.
     Let's start by clicking the top-left grid button to show all the available modules, then click on the "Manufacturing" list in the dropdown.
 
 7. You should now see some Manufacturing Order records in what we call a "List View", now you can go ahead and create a new one by clicking the "New" button on the top-left part of the screen beside the "Manufacturing Order" title.
+![Manufacturing Order list view](image-2.png)
 
 8. Now let's try to manufacture a drawer by clicking on the Product field, and selecting "Drawer", it should shown as [FURN_8855] Drawer.
+![A New MO](image-3.png)
 
 9. Once you're done, go ahead and click "Confirm"
 
 10. Now you can notice in the "Quality Checks" tab, there are a few line records matching the line records in "Components" tab, now this is where the quality checking feature comes in.
+![Quality Checks generated](image-4.png)
 
 11. But before that, under the "Components" tab, please tick the "Consumed" column for all components actually in use to make the Drawer.
+![](image-5.png)
 
 12. So basically you have to check whether all Components needed to make a drawer are actually used correctly based on their quantity consumed during the manufacturing process. To do this, under "Quality Checks" tab, click on one of the record, and fill up the "Name" column with whatever tests name you might find suitable, and most importantly fill the "Tolerance Range" to determine how many quantity errors or gap between the real number checked physically and the ones in the Bills of Material are allowed in order for this Drawer to be passed QC.
+![Filling the Name and Tolerance Range](image-6.png)
 
 13. Then fill the "Measured Value" with the real number checked physically, and the system will then automatically determines whether this component are passed or not in real time.
+![Filling the real number, incidentally failing the check](image-7.png)
 
 14. Now once every QC records are Passed, you can now click "Produce" or "Produce All".
 
 15. Now if you have any Failed QC records, the MO status will change to On Hold, to advance, you need to click on "Restart Quality Check" and restart the whole QC process all over again.
+![A failed QC on MO](image-8.png)
 
 16. Voila, now your Manufacturing process has a Quality Checking feature installed and ready to go.
 
